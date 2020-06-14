@@ -6,10 +6,7 @@ from discord.ext import commands, tasks
 from dotenv import load_dotenv
 import datetime
 import time as t
-import schedule
 import helpers
-
-days_of_months = {"01": "31", "02": "29", "03": "31", "04": "30", "05": "31", "06": "30", "07": "31", "08": "31", "09": "30", "10": "31", "11": "30", "12": "31"}
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -38,7 +35,7 @@ async def on_guild_join(guild):
     chan = guild.system_channel
     chan_file.write(str(chan.id))
     chan_file.close()
-    await guild.system_channel.send("Thank you for using Birthday Bot.\nPlease use the command `!change-channel` to set the default output channel for this bot, otherwise this channel will be the default output channel.\nOnce this is done, use `!add-birthday` to add your birthday to the list!")
+    await guild.system_channel.send("Thank yocdu for using Birthday Bot.\nPlease use the command `!change-channel` to set the default output channel for this bot, otherwise this channel will be the default output channel.\nOnce this is done, use `!add-birthday` to add your birthday to the list!")
 
 @bot.event
 async def on_guild_remove(guild):

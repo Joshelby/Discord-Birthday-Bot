@@ -1,6 +1,5 @@
 import datetime
 import csv
-import schedule
 import discord
 
 def validate_bday(bday):

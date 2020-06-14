@@ -4,13 +4,13 @@ import os
 import discord
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
+from boto.s3.connection import S3Connection
 import datetime
 import time as t
 import helpers
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD = os.getenv('DISCORD_GUILD')
+TOKEN = S3Connection(os.environ['BOT_TOKEN'])
 
 bot = commands.Bot(command_prefix='!')
 

@@ -1,2 +1,2 @@
 # Discord-Birthday-Bot
-Written by Joshelby
+Written by Josh

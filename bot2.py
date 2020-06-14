@@ -34,7 +34,7 @@ async def on_guild_join(guild):
     chan = guild.system_channel
     chan_file.write(str(chan.id))
     chan_file.close()
-    await guild.system_channel.send("Thank yocdu for using Birthday Bot.\nPlease use the command `!change-channel` to set the default output channel for this bot, otherwise this channel will be the default output channel.\nOnce this is done, use `!add-birthday` to add your birthday to the list!")
+    await guild.system_channel.send("Thank you for using Birthday Bot.\nPlease use the command `!change-channel` to set the default output channel for this bot, otherwise this channel will be the default output channel.\nOnce this is done, use `!add-birthday` to add your birthday to the list!")
 
 @bot.event
 async def on_guild_remove(guild):
@@ -43,7 +43,7 @@ async def on_guild_remove(guild):
     
 @tasks.loop(hours=1.0, reconnect = False)
 async def check_bdays():
-    if datetime.datetime.now().hour == 19:
+    if datetime.datetime.now().hour == 00:
         await helpers.check_bdays(bot)
 
 @check_bdays.before_loop

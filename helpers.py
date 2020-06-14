@@ -15,7 +15,7 @@ async def add_bday(ctx, bday):
     for row in csv_reader:
         if row["user"] == str(ctx.author.id):
             print("Wahey")
-            await ctx.send(f"{ctx.author.display_name} already has a birthday stored of {row['bday']}.\nPlease use the change-birthday command if this is incorrect.")
+            await ctx.send(f"You already have a birthday stored of {row['bday']}.\nPlease use the change-birthday command if this is incorrect.")
             return
     bdays_file.close()
     bdays_file = open(str(ctx.guild.id) + "birthdays.txt", mode="a")

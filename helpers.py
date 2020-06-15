@@ -49,6 +49,20 @@ async def change_channel(ctx, chan):
     chan_file.close()
     await ctx.channel.send(f"Output channel successfully changed to {channel.name}.")
 
+async def list_bdays(ctx):
+    bdays_file = open(str(ctx.guild.id) + "birthdays.txt", mode="r")
+    csv_reader = csv.DictReader(bdays_file, ["user", "bday"])
+    output = ""
+    for row in csv_reader:
+        if row["user"] == "user":
+            continue
+        user = discord.utils.get(ctx.guild.members, id=int(row["user"]))
+        cur_bday = datetime.date.fromisoformat(row["bday"])
+        output += user + "'s birthday is on " + cur_bday.day + "-" + cur_bday.month + "\n"
+    chan_file = open(str(ctx.guild.id) + "channel.txt", mode="r")
+    channel = ctx.guild.get_channel(int(chan_file.read()))
+    await channel.send(output + "\nBirthdays listed above.")
+
 async def check_bdays(bot):
     for guild in bot.guilds:
         print(guild.name)

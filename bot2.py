@@ -11,15 +11,7 @@ import helpers
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-bot = commands.Bot(command_prefix='!')
-
-@bot.event
-async def on_error(self, event, *args, **kwargs):
-        with open('err.log', 'a') as f:
-            if event == 'on_message':
-                f.write(f'Unhandled message: {args[0]}\n')
-            else:
-                raise
+bot = commands.Bot(command_prefix="!")
 
 @bot.event
 async def on_ready():
@@ -74,6 +66,10 @@ async def change_birthday(ctx, bday):
 @bot.command(name='change-channel', help='Use this to change the output channel for the bot.')
 async def change_channel(ctx, chan):
     await helpers.change_channel(ctx, chan)
+
+@bot.command(name='list-birthdays', help='Use this to list every birthday currently stored for the server.')
+async def list_birthdays(ctx):
+    await helpers.list_bdays(ctx)
 
 check_bdays.start()
 

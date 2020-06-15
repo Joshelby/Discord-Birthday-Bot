@@ -44,7 +44,7 @@ async def on_guild_remove(guild):
     except FileNotFoundError:
         return
     
-@tasks.loop(minutes=1.0, reconnect = False)
+@tasks.loop(minutes=1.0)
 async def check_bdays():
     print("Checking birthdays")
     print(datetime.datetime.now().hour)

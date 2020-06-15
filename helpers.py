@@ -58,7 +58,16 @@ async def list_bdays(ctx):
             continue
         user = discord.utils.get(ctx.guild.members, id=int(row["user"]))
         cur_bday = datetime.date.fromisoformat(row["bday"])
-        output += user + "'s birthday is on " + cur_bday.day + "-" + cur_bday.month + "\n"
+        if 4 <= cur_bday.day <= 20 or 24 <= cur_bday.day <= 30:
+            suffix = "th"
+        else:
+            suffix = ["st", "nd", "rd"][cur_bday.day % 10 - 1]
+        if cur_bday.strftime("%d")[0] == "0":
+            day = cur_bday.strftime("%d")[1]
+        else:
+            day = cur_bday.strftime("%d")
+        cur_bday_str = cur_bday.strftime(f"{day}{suffix} of %B")
+        output += user.display_name + "'s birthday is on the " + cur_bday_str + "." + "\n"
     chan_file = open(str(ctx.guild.id) + "channel.txt", mode="r")
     channel = ctx.guild.get_channel(int(chan_file.read()))
     await channel.send(output + "\nBirthdays listed above.")

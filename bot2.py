@@ -16,6 +16,22 @@ bot = commands.Bot(command_prefix="!")
 @bot.event
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
+    for guild in bot.guilds:
+        try:
+            bdays_file = open(str(guild.id) + "birthdays.txt", mode="r")
+        except FileNotFoundError:
+            bdays_file = open(str(guild.id) + "birthdays.txt", mode="w")
+            bdays_file.write("user,bday\n")
+            bdays_file.close()
+            print(f"Bday file not found for {guild.name}, creating...")
+        try:
+            chan_file = open(str(guild.id) + "channel.txt", mode="r")
+        except FileNotFoundError:
+            chan_file = open(str(guild.id) + "channel.txt", mode="w")
+            chan = guild.system_channel
+            chan_file.write(str(chan.id))
+            chan_file.close()
+            print(f"Chan file not found for {guild.name}, creating...")
     
 @bot.event
 async def on_guild_join(guild):

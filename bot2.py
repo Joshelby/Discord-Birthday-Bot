@@ -41,9 +41,9 @@ async def on_guild_remove(guild):
     os.remove(str(guild.id) + "birthdays.txt")
     os.remove(str(guild.id) + "channel.txt")
     
-@tasks.loop(hours=1.0, reconnect = False)
+@tasks.loop(minutes=1.0, reconnect = False)
 async def check_bdays():
-    if datetime.datetime.now().hour == 00:
+    if datetime.datetime.now().hour == 1:
         await helpers.check_bdays(bot)
 
 @check_bdays.before_loop

@@ -31,7 +31,6 @@ async def change_bday(ctx, bday):
         if row["user"] == str(ctx.author.id):
             row["bday"] = bday
         temp_bdays_dict[row["user"]] = row["bday"]
-    print(temp_bdays_dict)
     bdays_file.close()
     bdays_file = open(str(ctx.guild.id) + "birthdays.txt", mode="w")
     csv_writer = csv.DictWriter(bdays_file, ["user", "bday"])

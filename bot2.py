@@ -44,11 +44,11 @@ async def on_guild_remove(guild):
     except FileNotFoundError:
         return
     
-@tasks.loop(minutes=1.0)
+@tasks.loop(hours=1.0, reconnect=False)
 async def check_bdays():
     print("Checking birthdays")
     print(datetime.datetime.now().hour)
-    if datetime.datetime.now().hour == 0:
+    if datetime.datetime.now().hour == 9:
         print("Birthday found")
         await helpers.check_bdays(bot)
 

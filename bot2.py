@@ -47,6 +47,7 @@ async def on_guild_remove(guild):
 @tasks.loop(minutes=1.0, reconnect = False)
 async def check_bdays():
     print("Checking birthdays")
+    print(datetime.datetime.now().hour)
     if datetime.datetime.now().hour == 1:
         print("Birthday found")
         await helpers.check_bdays(bot)

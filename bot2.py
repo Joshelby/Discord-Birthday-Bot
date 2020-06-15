@@ -38,8 +38,11 @@ async def on_guild_join(guild):
 
 @bot.event
 async def on_guild_remove(guild):
-    os.remove(str(guild.id) + "birthdays.txt")
-    os.remove(str(guild.id) + "channel.txt")
+    try:
+        os.remove(str(guild.id) + "birthdays.txt")
+        os.remove(str(guild.id) + "channel.txt")
+    except FileNotFoundError:
+        return
     
 @tasks.loop(minutes=1.0, reconnect = False)
 async def check_bdays():

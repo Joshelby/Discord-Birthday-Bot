@@ -14,7 +14,6 @@ async def add_bday(ctx, bday):
     csv_reader = csv.DictReader(bdays_file, ["user", "bday"])
     for row in csv_reader:
         if row["user"] == str(ctx.author.id):
-            print("Wahey")
             await ctx.send(f"You already have a birthday stored of {row['bday']}.\nPlease use the change-birthday command if this is incorrect.")
             return
     bdays_file.close()
